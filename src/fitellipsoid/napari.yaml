@@ -1,0 +1,15 @@
+name: fitellipsoid
+display_name: Fitellipsoid
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/technical_references/manifest.html#fields for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: fitellipsoid.make_sample_data
+      python_name: fitellipsoid._sample_data:make_sample_data
+      title: Load sample data from Fitellipsoid
+  sample_data:
+    - command: fitellipsoid.make_sample_data
+      display_name: Fitellipsoid
+      key: unique_id.1
