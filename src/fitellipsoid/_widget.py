@@ -2,6 +2,7 @@
 import napari
 from napari.utils.notifications import show_info
 from magicgui.widgets import Container, PushButton, FileEdit, FloatSpinBox, Label
+from qtpy.QtWidgets import QFileDialog
 import tifffile
 import numpy as np
 import pandas as pd
@@ -110,8 +111,8 @@ class FitEllipsoidWidget(Container):
         
         # Create your widgets
         self.fit_button = PushButton(label="Fit Ellipsoid")
-        self.save_path = FileEdit(mode='w', filter='*.csv', label='Choose filename...')
-        self.save_button = PushButton(label="Save")
+        self.save_button = PushButton(label="Save Results")
+
         self.x_input = FloatSpinBox(label="X Scale", value=1.0, min=0.0001, max=100.0)
         self.y_input = FloatSpinBox(label="Y Scale", value=1.0, min=0.0001, max=100.0)
         self.z_input = FloatSpinBox(label="Z Scale", value=1.0, min=0.0001, max=100.0)
@@ -126,8 +127,8 @@ class FitEllipsoidWidget(Container):
         # Create container with all widgets
         super().__init__(
             widgets=[
+                Label(value="Fit your ellopsoid"),
                 self.fit_button,
-                self.save_path,
                 Label(value="Save Results"),
                 self.save_button,
                 Label(value="Scale Settings"),
@@ -140,7 +141,11 @@ class FitEllipsoidWidget(Container):
 
     def _save_dialog(self):
         # Get the filename from the save_path widget
-        filename = self.save_path.value
+        filename, _ = QFileDialog.getSaveFileName(
+            parent=None,
+            caption="Save Ellipsoids",
+            filter="CSV files (*.csv)"
+        )
         if filename:
             # Call the save function when the user presses the button
             if self.ellipsoid_list:                    
@@ -224,8 +229,3 @@ class FitEllipsoidWidget(Container):
                 print(f"Could not set scale for {layer.name}: {e}")
 
         print(f"Updated scale to: {new_scale}")
-
-# def make_fit_ellipsoid_widget(viewer):
-#     widget = FitEllipsoidWidget(viewer)
-#     #viewer.window.add_dock_widget(widget, area='right')
-#     return widget
