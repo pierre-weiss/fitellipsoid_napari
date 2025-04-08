@@ -1,7 +1,7 @@
 [project]
 name = "fitellipsoid"
 dynamic = ["version"]
-description = "A plugin that allows you to estimate the closest ellipsoid to a set of points clicked on a 3D image. Useful to measure anisotropy ratios, mechanical stress, volumes, surfaces, ..."
+description = "A plugin to that fits an ellipsoid to a set of 3D points clicked"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
@@ -12,7 +12,7 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Framework :: napari",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: BSD License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -25,7 +25,16 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "napari>=0.5.6",
+    "npe2",
     "numpy",
+    "magicgui",
+    "qtpy",
+    "scikit-image",
+    "tifffile", 
+    "scipy",
+    "pandas", 
+    "pathlib",
 ]
 
 [project.optional-dependencies]
@@ -33,16 +42,13 @@ testing = [
     "tox",
     "pytest",  # https://docs.pytest.org/en/latest/contents.html
     "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
+    "pytest-qt",  # https://pytest-qt.readthedocs.io/en/latest/
+    "napari",
+    "pyqt5",
 ]
 
-[project.entry-points."napari.manifest"]
+[project.entry-points."npe2"]
 fitellipsoid = "fitellipsoid:napari.yaml"
-
-[project.urls]
-"Bug Tracker" = "https://github.com/pierre-weiss/fitellipsoid/issues"
-"Documentation" = "https://github.com/pierre-weiss/fitellipsoid#README.md"
-"Source Code" = "https://github.com/pierre-weiss/fitellipsoid"
-"User Support" = "https://github.com/pierre-weiss/fitellipsoid/issues"
 
 [build-system]
 requires = ["setuptools>=42.0.0", "wheel", "setuptools_scm"]
@@ -57,11 +63,9 @@ where = ["src"]
 [tool.setuptools.package-data]
 "*" = ["*.yaml"]
 
-
 [tool.setuptools_scm]
 write_to = "src/fitellipsoid/_version.py"
 fallback_version = "0.0.1+nogit"
-
 
 [tool.black]
 line-length = 79

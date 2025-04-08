@@ -1,10 +1,8 @@
+"""
+Fit Ellipsoid Plugin
+-------------------
 
-try:
-    from ._version import version as __version__
-except ImportError:
-    __version__ = "unknown"
-from ._sample_data import make_sample_data
+A plugin to fit ellipsoids with a few clicks.
+"""
 
-__all__ = (
-    "make_sample_data",
-    )
+__version__ = "0.1.dev1+ge513df9.d20250408"

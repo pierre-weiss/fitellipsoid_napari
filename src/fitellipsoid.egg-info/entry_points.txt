@@ -1,2 +1,2 @@
-[napari.manifest]
+[npe2]
 fitellipsoid = fitellipsoid:napari.yaml

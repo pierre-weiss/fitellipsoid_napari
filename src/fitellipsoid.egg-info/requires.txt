@@ -1,6 +1,18 @@
+napari>=0.5.6
+npe2
 numpy
+magicgui
+qtpy
+scikit-image
+tifffile
+scipy
+pandas
+pathlib
 
 [testing]
 tox
 pytest
 pytest-cov
+pytest-qt
+napari
+pyqt5

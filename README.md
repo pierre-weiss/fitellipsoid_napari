@@ -1,6 +1,6 @@
 # fitellipsoid
 
-[![License BSD-3](https://img.shields.io/pypi/l/fitellipsoid.svg?color=green)](https://github.com/pierre-weiss/fitellipsoid/raw/main/LICENSE)
+[![License GNU GPL v3.0](https://img.shields.io/pypi/l/fitellipsoid.svg?color=green)](https://github.com/pierre-weiss/fitellipsoid/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/fitellipsoid.svg?color=green)](https://pypi.org/project/fitellipsoid)
 [![Python Version](https://img.shields.io/pypi/pyversions/fitellipsoid.svg?color=green)](https://python.org)
 [![tests](https://github.com/pierre-weiss/fitellipsoid/workflows/tests/badge.svg)](https://github.com/pierre-weiss/fitellipsoid/actions)
@@ -9,7 +9,7 @@
 [![npe2](https://img.shields.io/badge/plugin-npe2-blue?link=https://napari.org/stable/plugins/index.html)](https://napari.org/stable/plugins/index.html)
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-purple.json)](https://github.com/copier-org/copier)
 
-A plugin that allows you to estimate the closest ellipsoid to a set of points clicked on a 3D image. Useful to measure anisotropy ratios, mechanical stress, volumes, surfaces, ...
+A plugin to find the best ellipsoid to fit a set of points clicked by the user
 
 ----------------------------------
 
@@ -31,10 +31,6 @@ You can install `fitellipsoid` via [pip]:
 
 
 
-To install latest development version :
-
-    pip install git+https://github.com/pierre-weiss/fitellipsoid.git
-
 
 ## Contributing
 
@@ -43,7 +39,7 @@ the coverage at least stays the same before you submit a pull request.
 
 ## License
 
-Distributed under the terms of the [BSD-3] license,
+Distributed under the terms of the [GNU GPL v3.0] license,
 "fitellipsoid" is free and open source software
 
 ## Issues
@@ -60,8 +56,6 @@ If you encounter any problems, please [file an issue] along with a detailed desc
 [Apache Software License 2.0]: http://www.apache.org/licenses/LICENSE-2.0
 [Mozilla Public License 2.0]: https://www.mozilla.org/media/MPL/2.0/index.txt
 [napari-plugin-template]: https://github.com/napari/napari-plugin-template
-
-[file an issue]: https://github.com/pierre-weiss/fitellipsoid/issues
 
 [napari]: https://github.com/napari/napari
 [tox]: https://tox.readthedocs.io/en/latest/
