@@ -1,5 +1,6 @@
-- create a proper plugin
+* create a proper plugin 
 - add on pypi
 - Add load previous file
+- Remove ellipsoid when the corresponding layer is removed
 
 
