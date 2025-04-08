@@ -1,7 +1,7 @@
 [project]
 name = "fitellipsoid"
-dynamic = ["version"]
-description = "A plugin to that fits an ellipsoid to a set of 3D points clicked"
+version = "0.0.1"
+description = "A plugin to that fits an ellipsoid to a set of user clicked points in 3D"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
@@ -31,34 +31,31 @@ dependencies = [
     "magicgui",
     "qtpy",
     "scikit-image",
-    "tifffile", 
+    "tifffile",
     "scipy",
-    "pandas", 
+    "pandas",
     "pathlib",
 ]
 
 [project.optional-dependencies]
 testing = [
     "tox",
-    "pytest",  # https://docs.pytest.org/en/latest/contents.html
-    "pytest-cov",  # https://pytest-cov.readthedocs.io/en/latest/
-    "pytest-qt",  # https://pytest-qt.readthedocs.io/en/latest/
+    "pytest",
+    "pytest-cov",
+    "pytest-qt",
     "napari",
     "pyqt5",
 ]
 
-[project.entry-points."npe2"]
+[project.entry-points."napari.manifest"]
 fitellipsoid = "fitellipsoid:napari.yaml"
-
-[build-system]
-requires = ["setuptools>=42.0.0", "wheel", "setuptools_scm"]
-build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["fitellipsoid*"]  # Ensures fitellipsoid package is found
 
 [tool.setuptools.package-data]
 "*" = ["*.yaml"]
@@ -88,10 +85,9 @@ lint.select = [
 ]
 lint.ignore = [
     "E501", # line too long. let black handle this
-    "UP006", "UP007", # type annotation. As using magicgui require runtime type annotation then we disable this.
-    "SIM117", # flake8-simplify - some of merged with statements are not looking great with black, reanble after drop python 3.9
+    "UP006", "UP007", # type annotation
+    "SIM117", # flake8-simplify
 ]
-
 exclude = [
     ".bzr",
     ".direnv",
@@ -113,6 +109,5 @@ exclude = [
     "*vendored*",
     "*_vendor*",
 ]
-
 target-version = "py310"
 fix = true

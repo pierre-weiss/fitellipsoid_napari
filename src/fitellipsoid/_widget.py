@@ -99,8 +99,8 @@ class FitEllipsoidWidget(Container):
         self.point_layer_list = []
 
         self.viewer = napari_viewer
-        self.image = tifffile.imread("./data/img_test.tif")   
-        self.viewer.add_image(self.image,  blending='translucent_no_depth', name="Image")
+        # self.image = tifffile.imread("./data/img_test.tif")   
+        # self.viewer.add_image(self.image,  blending='translucent_no_depth', name="Image")
         points_layer = self.viewer.add_points([], size = self.default_point_size, face_color='red', ndim=3,  blending='translucent_no_depth')
         self.points_layer_list.append(points_layer)
         self.ellipsoid_list.append(Ellipsoid())
@@ -110,7 +110,7 @@ class FitEllipsoidWidget(Container):
         
         # Create your widgets
         self.fit_button = PushButton(label="Fit Ellipsoid")
-        self.save_path = FileEdit(mode='w', filter='*.csv', label='Save Results')
+        self.save_path = FileEdit(mode='w', filter='*.csv', label='Choose filename...')
         self.save_button = PushButton(label="Save")
         self.x_input = FloatSpinBox(label="X Scale", value=1.0, min=0.0001, max=100.0)
         self.y_input = FloatSpinBox(label="Y Scale", value=1.0, min=0.0001, max=100.0)
@@ -123,13 +123,11 @@ class FitEllipsoidWidget(Container):
         self.y_input.changed.connect(self._update_scale)
         self.z_input.changed.connect(self._update_scale)
         
-        # Initialize your points layers and ellipsoid list
-        self._initialize_layers()
-        
         # Create container with all widgets
         super().__init__(
             widgets=[
                 self.fit_button,
+                self.save_path,
                 Label(value="Save Results"),
                 self.save_button,
                 Label(value="Scale Settings"),
@@ -203,7 +201,7 @@ class FitEllipsoidWidget(Container):
             self.ellipsoid_list.append(Ellipsoid())
             new_point_layer.mouse_drag_callbacks.clear()  # Remove old bindings
             new_point_layer.mouse_drag_callbacks.append(self._on_mouse_press)
-            self.update_scale()
+            self._update_scale()
             print(f"Added a new point layer for your new ellipsoid.")
 
         else:
@@ -226,3 +224,8 @@ class FitEllipsoidWidget(Container):
                 print(f"Could not set scale for {layer.name}: {e}")
 
         print(f"Updated scale to: {new_scale}")
+
+# def make_fit_ellipsoid_widget(viewer):
+#     widget = FitEllipsoidWidget(viewer)
+#     #viewer.window.add_dock_widget(widget, area='right')
+#     return widget

@@ -1,0 +1,12 @@
+name: fitellipsoid
+display_name: Fit Ellipsoid
+visibility: public
+version: 0.0.1
+contributions:
+  commands:
+    - id: fitellipsoid.FitEllipsoidWidget
+      python_name: fitellipsoid._widget:FitEllipsoidWidget
+      title: Create Fit Ellipsoid Widget
+  widgets:
+    - command: fitellipsoid.FitEllipsoidWidget
+      display_name: FitEllipsoid

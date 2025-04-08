@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: fitellipsoid
-Version: 0.1.dev1+ge513df9.d20250408
-Summary: A plugin to that fits an ellipsoid to a set of 3D points clicked
+Version: 0.0.1
+Summary: A plugin to that fits an ellipsoid to a set of user clicked points in 3D
 Author: Pierre Weiss
 Author-email: pierre.weiss@cnrs.fr
 License: 
