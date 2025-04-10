@@ -4,3 +4,7 @@
 - Remove ellipsoid when the corresponding layer is removed
 - Add a documentation
 
+
+To upload a new one : 
+python build -m
+twine upload dist/*

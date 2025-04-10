@@ -3,17 +3,16 @@
 [![License GNU GPL v3.0](https://img.shields.io/pypi/l/fitellipsoid.svg?color=green)](https://github.com/pierre-weiss/fitellipsoid/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/fitellipsoid.svg?color=green)](https://pypi.org/project/fitellipsoid)
 [![Python Version](https://img.shields.io/pypi/pyversions/fitellipsoid.svg?color=green)](https://python.org)
-[![tests](https://github.com/pierre-weiss/fitellipsoid/workflows/tests/badge.svg)](https://github.com/pierre-weiss/fitellipsoid/actions)
+<!-- [![tests](https://github.com/pierre-weiss/fitellipsoid/workflows/tests/badge.svg)](https://github.com/pierre-weiss/fitellipsoid/actions)-->
 [![codecov](https://codecov.io/gh/pierre-weiss/fitellipsoid/branch/main/graph/badge.svg)](https://codecov.io/gh/pierre-weiss/fitellipsoid)
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/fitellipsoid)](https://napari-hub.org/plugins/fitellipsoid)
 [![npe2](https://img.shields.io/badge/plugin-npe2-blue?link=https://napari.org/stable/plugins/index.html)](https://napari.org/stable/plugins/index.html)
-[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-purple.json)](https://github.com/copier-org/copier)
 
 A plugin to find the best ellipsoid to fit a set of points clicked by the user.
 With just a few clicks (10 is the absolute minimum) around the cells/nuclei boundaries, the plugin fits an ellipsoid and returns its parameters. 
 This can be used to analyze tissue geometry, mecanical stress, provide training databases for segmentation algorithms,...
 
-![FitEllipsoid widget example](images/screenshot.png)
+![FitEllipsoid widget example](images/screenshot.jpg)
 
 ----------------------------------
 

@@ -1,6 +1,6 @@
 [project]
 name = "fitellipsoid"
-version = "0.0.3"
+version = "0.0.4"
 description = "A plugin to that fits an ellipsoid to a set of user clicked points in 3D"
 readme = "README.md"
 license = {file = "LICENSE"}
