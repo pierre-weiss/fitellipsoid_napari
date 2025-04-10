@@ -31,6 +31,11 @@ You can install `fitellipsoid` via [pip]:
     pip install fitellipsoid
     napari
 
+## Contributors
+
+- **Pierre Weiss** - Project lead, core plugin development
+- **Clément Cazorla** - Added the segmentation mask generation
+
 ## Contributing
 
 Contributions are very welcome. Tests can be run with [tox], please ensure
