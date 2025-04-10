@@ -1,7 +1,7 @@
 name: fitellipsoid
 display_name: Fit Ellipsoid
 visibility: public
-version: 0.0.2
+version: 0.0.3
 contributions:
   commands:
     - id: fitellipsoid.FitEllipsoidWidget
