@@ -112,6 +112,8 @@ class FitEllipsoidWidget(Container):
         # Create your widgets
         self.fit_button = PushButton(label="Fit Ellipsoid")
         self.save_button = PushButton(label="Save Results")
+        self.save_mask_button = PushButton(label="Save Mask")
+        self.save_mask_button.clicked.connect(self._save_mask_dialog)
 
         self.x_input = FloatSpinBox(label="X Scale", value=1.0, min=0.0001, max=100.0)
         self.y_input = FloatSpinBox(label="Y Scale", value=1.0, min=0.0001, max=100.0)
@@ -127,12 +129,14 @@ class FitEllipsoidWidget(Container):
         # Create container with all widgets
         super().__init__(
             widgets=[
-                Label(value="Fit your ellopsoid"),
+                Label(value="Fit your ellipsoid"),
                 self.fit_button,
                 Label(value="Save Results"),
                 self.save_button,
+                Label(value="Export Mask"),
+                self.save_mask_button,
                 Label(value="Scale Settings"),
-                self.x_input, 
+                self.x_input,
                 self.y_input,
                 self.z_input
             ],
@@ -152,7 +156,75 @@ class FitEllipsoidWidget(Container):
                 save_ellipsoids_to_excel(self.ellipsoid_list, filename)
                 print(f"Ellipsoids saved to {filename}")
         else:
-            print("No filename provided")   
+            print("No filename provided")
+
+
+    @staticmethod
+    def create_ellipsoid_mask(shape, center, radii, rotation):
+        zz, yy, xx = np.meshgrid(
+            np.arange(shape[0]), np.arange(shape[1]), np.arange(shape[2]),
+            indexing='ij'
+        )
+        coords = np.stack((zz, yy, xx), axis=-1).reshape(-1, 3)
+
+        # Translation puis rotation inverse
+        translated = coords - center
+        inv_rotation = np.linalg.inv(rotation)
+        rotated = translated @ inv_rotation.T
+
+        # Equation de l’ellipsoïde centrée et alignée
+        norm = ((rotated[:, 0] / radii[0]) ** 2 +
+                (rotated[:, 1] / radii[1]) ** 2 +
+                (rotated[:, 2] / radii[2]) ** 2)
+
+        mask = norm <= 1.0
+        return mask.reshape(shape)
+
+
+
+    def _save_mask_dialog(self):
+        if len(self.ellipsoid_list) == 0:
+            show_info("No ellipsoid fitted.")
+            return
+
+        filename, _ = QFileDialog.getSaveFileName(caption="Save labeled mask", filter="*.tif")
+        if not filename:
+            return
+
+        # Trouve le premier layer d'image dans le viewer
+        image_layer = next((layer for layer in self.viewer.layers if layer.__class__.__name__ == 'Image'), None)
+
+        if image_layer is not None:
+            shape = image_layer.data.shape
+        else:
+            shape = (128, 128, 128)
+        mask = np.zeros(shape, dtype=np.uint16)
+
+        label_value = 1
+        for ellipsoid in self.ellipsoid_list:
+            if len(ellipsoid.eigvecs) == 0:
+                continue
+
+            center = ellipsoid.center
+            radii = ellipsoid.axes_length
+            rotation = np.array(ellipsoid.eigvecs)
+
+            # Appelle ta fonction utilitaire (tu peux la mettre dans math_func)
+            ellip_mask = self.create_ellipsoid_mask(shape, center, radii, rotation)
+
+            # Ajoute les voxels de cette ellipsoïde dans le masque final, avec une étiquette unique
+            mask[ellip_mask > 0] = label_value
+            label_value += 1
+
+        if label_value == 1:
+            show_info("No complete ellipsoid to save.")
+            return
+
+        # Sauvegarde TIFF
+        tifffile.imwrite(filename, mask)
+        show_info(f"Multi-label ellipsoid mask saved to {filename}")
+
+        self.viewer.add_labels(mask, name="Ellipsoids Mask")
 
     def _on_mouse_press(self, layer, event):
             layer_number = self.points_layer_list.index(layer)

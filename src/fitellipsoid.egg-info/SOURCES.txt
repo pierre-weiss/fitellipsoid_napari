@@ -3,10 +3,10 @@ MANIFEST.in
 README.md
 pyproject.toml
 todo.txt
-data/fitellipsoid_minimal.py
 data/img_test.tif
 src/fitellipsoid/__init__.py
 src/fitellipsoid/_widget.py
+src/fitellipsoid/_widget_old.py
 src/fitellipsoid/math_func.py
 src/fitellipsoid/napari.yaml
 src/fitellipsoid.egg-info/PKG-INFO

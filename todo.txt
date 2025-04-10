@@ -2,5 +2,5 @@
 - add on pypi
 - Add load previous file
 - Remove ellipsoid when the corresponding layer is removed
-
+- Add a documentation
 

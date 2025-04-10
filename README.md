@@ -13,8 +13,6 @@ A plugin to find the best ellipsoid to fit a set of points clicked by the user
 
 ----------------------------------
 
-This [napari] plugin was generated with [copier] using the [napari-plugin-template].
-
 <!--
 Don't miss the full getting started guide to set up your new package:
 https://github.com/napari/napari-plugin-template#getting-started
@@ -27,10 +25,11 @@ https://napari.org/stable/plugins/index.html
 
 You can install `fitellipsoid` via [pip]:
 
+    conda create -n fitellipsoid-env python=3.11
+    conda activate fitellispoid-env
+    pip install -U 'napari[all]'
     pip install fitellipsoid
-
-
-
+    napari
 
 ## Contributing
 
